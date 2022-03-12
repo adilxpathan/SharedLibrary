@@ -7,7 +7,7 @@ Map specs
   this.mainScript = mainScript
   this.specs = specs
   }
-  string checkOutFunc(Map specs){
+  def checkOutFunc(Map specs){
     mainScript.checkout([$class: 'GitSCM',
     branches: [[name: specs.branch]],
     extensions: [],
