@@ -11,7 +11,7 @@ def call(){
       stage('reading GlobalConfig & Specs'){ 
         try {
           println "reading the specs from Specs repository"
-          def specsDir = "./specs/$Version"
+          def specsDir = "./$Version"
           println "specs version" + specsDir
             if(fileExists(specsDir + "/ci_template.yaml")){
              ci_template = readYaml file : specsDir + "/ci_template.yaml"
