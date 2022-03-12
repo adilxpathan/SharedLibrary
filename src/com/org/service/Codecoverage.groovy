@@ -1,4 +1,4 @@
-package com.hexaware.service
+package com.org.service
 class Codecoverage implements Serializable{
 Script mainScript
 Map specs
