@@ -1,13 +1,13 @@
 package com.org.service
-class Codecheckout implements Serializable{
+public class Codecheckout implements Serializable{
 Script mainScript
 Map specs
 
-  def Codecheckout(Script mainScript, Map specs){
+  string Codecheckout(Script mainScript, Map specs){
   this.mainScript = mainScript
   this.specs = specs
   }
-  def checkOutFunc(Map specs){
+  string checkOutFunc(Map specs){
     mainScript.checkout([$class: 'GitSCM',
     branches: [[name: specs.branch]],
     extensions: [],
