@@ -1,4 +1,4 @@
-package com.hexaware.service
+package com.org.service
 class Unittesting implements Serializable{
 Script mainScript
 Map specs
