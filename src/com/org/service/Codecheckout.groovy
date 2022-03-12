@@ -3,7 +3,7 @@ public class Codecheckout implements Serializable{
 Script mainScript
 Map specs
 
-  string Codecheckout(Script mainScript, Map specs){
+  def Codecheckout(Script mainScript, Map specs){
   this.mainScript = mainScript
   this.specs = specs
   }
