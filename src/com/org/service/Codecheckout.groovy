@@ -24,9 +24,9 @@ Logger logger
       userRemoteConfigs: [[url: specs.repo ]]
       ])
       logger.info "Code succesfully checkedout from: " + specs.branch
-    }
-  } catch(Exception e){
+    } catch(Exception e){
             throw new Exception("Error in Codecheckout: " + e.getMessage())
         }
+  } 
   
-}
+
