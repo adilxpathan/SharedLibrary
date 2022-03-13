@@ -2,8 +2,8 @@ package com.org.service
 
 //import groovy.transform.Field
 //import com.toyota.tfs.exception.*
-import com.toyota.tfs.log.Logger
-import com.toyota.tfs.log.LogLevel
+import com.org.log.Logger
+import com.org.log.LogLevel
 
 
 public class Codecheckout implements Serializable{
