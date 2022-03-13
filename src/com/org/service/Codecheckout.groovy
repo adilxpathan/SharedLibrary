@@ -23,7 +23,7 @@ Logger logger
       extensions: [],
       userRemoteConfigs: [[url: specs.repo ]]
       ])
-      logger.info "Code succesfully checkedout from: " + specs.branch
+      logger.info "Code succesfully checkedout from: " + specs.repo
     } catch(Exception e){
             throw new Exception("Error in Codecheckout: " + e.getMessage())
         }
