@@ -1,16 +1,32 @@
 package com.org.service
+
+//import groovy.transform.Field
+//import com.toyota.tfs.exception.*
+import com.org.log.Logger
+import com.org.log.LogLevel
+
 class Codequality implements Serializable{
 Script mainScript
 Map specs
 Map config
-
+Logger logger
+  
   def Codequality(Script mainScript, Map specs, Map config){
   this.mainScript = mainScript
   this.specs = specs
   this.config = config
+  this.logger = new Logger(mainScript,"Codequality")
   }
   def codequalityFunc(Map specs, Map config){
-    mainScript.sh """ mvn sonar:sonar -Dsonar.projectKey=${specs.codeQuality.projectKey} -Dsonar.host.url=${config.java.codequality.sonarqube.url} -Dsonar.login=${config.java.codequality.sonarqube.login} -Dsonar.projectName=${specs.codeQuality.projectName} -Dsonar.organization=${config.java.codequality.sonarqube.organization} """
-     }
+    if (specs.containsKey("codeQuality")) {
+      if (specs.codeCoverage.tool == "sonarqube") {
+        mainScript.sh """ mvn sonar:sonar -Dsonar.projectKey=${specs.codeQuality.projectKey} -Dsonar.host.url=${config.java.codequality.sonarqube.url} -Dsonar.login=${config.java.codequality.sonarqube.login} -Dsonar.projectName=${specs.codeQuality.projectName} -Dsonar.organization=${config.java.codequality.sonarqube.organization} """  
+       } else {
+          logger.warn "unsupported tool. Please use sonarqube."
+        }
+      } else {
+          logger.warn "Skipping codeQuality stage as specs are missing."
+        }   
+  }
   
 }
