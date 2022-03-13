@@ -27,6 +27,5 @@ Logger logger
     } catch(Exception e){
             throw new Exception("Error in Codecheckout: " + e.getMessage())
         }
-  } 
-  
-
+   } 
+}
