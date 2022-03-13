@@ -18,14 +18,15 @@ Logger logger
   this.logger = new Logger(mainScript,"Codequality")
   }
   def codequalityFunc(Map specs, Map config){
-    if (specs.containsKey("codeQuality")) {
+    if (specs.codeQuality.isCodeQualityRequired && specs.containsKey("codeQuality")){  
       if (specs.codeCoverage.tool == "sonarqube") {
         mainScript.sh """ mvn sonar:sonar -Dsonar.projectKey=${specs.codeQuality.projectKey} -Dsonar.host.url=${config.java.codequality.sonarqube.url} -Dsonar.login=${config.java.codequality.sonarqube.login} -Dsonar.projectName=${specs.codeQuality.projectName} -Dsonar.organization=${config.java.codequality.sonarqube.organization} """  
+        logger.info "codeQuality successfully completed."
        } else {
           logger.warn "unsupported tool. Please use sonarqube."
         }
       } else {
-          logger.warn "Skipping codeQuality stage as specs are missing."
+          logger.warn "Skipping code quality stage because code quality templates are missing or code quality stage is disabled."
         }   
   }
   
