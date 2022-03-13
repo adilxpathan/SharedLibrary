@@ -44,7 +44,7 @@ def call(){
                 println "WARNING: Application log level is not set defaulting to: " + env.AppLogLevel
                 
                 withEnv(['APP_LOG_LEVEL=' + env.AppLogLevel ]) {
-                    if(specs.build.type == "java")){
+                    if(specs.build.type == "java"){
                         java_jenkinsfile(specs, config)
                         } else {
                         logger.warn "unsupported application type. As of now we only support the Java application."
