@@ -5,7 +5,7 @@ import com.org.log.LogLevel
 
 def call(){
   node('master') {
-    Logger logger = new Logger(this, "Java-Jenkinsfile", LogLevel.fromString(env.LOG_LEVEL))
+    Logger logger = new Logger(this, "Jenkinsfile", LogLevel.fromString(env.LOG_LEVEL))
     def specs = [:]
     try {
     stage('Specs Checkout'){
