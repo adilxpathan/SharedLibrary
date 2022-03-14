@@ -3,10 +3,9 @@
 import com.org.log.Logger
 import com.org.log.LogLevel
 
-def call(){
+def call(Map specs, Map config){
   node('master') {
     Logger logger = new Logger(this, "Java-Jenkinsfile", LogLevel.fromString(env.LOG_LEVEL))
-    def specs = [:]
     try {
      
         stage('Code Checkout'){
