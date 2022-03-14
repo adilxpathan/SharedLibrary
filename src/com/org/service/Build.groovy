@@ -18,7 +18,6 @@ Logger logger
   this.logger = new Logger(mainScript,"Build")
   }
   def buildFunc(Map specs, Map config){
-    etBuildInd = getBuildInd()
     if (specs.containsKey("build")) {
         if (specs.build.type == "java" && specs.build.tool == "maven") {
           if (specs.build.containsKey("command")){
