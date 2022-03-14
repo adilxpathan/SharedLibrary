@@ -29,13 +29,6 @@ def call(){
                 def request = libraryResource "com/org/service/globalConfig/globalConfig.yaml"
                 config = readYaml text: request
                 logger.debug "reading config file" + config
-
-                if (specs.build.type == "java") {
-                  ciFunc.jenkinsfile(specs, config)
-                }
-                else {
-                logger.warn "unsupported technology, as of now we only supports Java."
-                    }  
               
                 }
             catch(Exception e) {
@@ -44,6 +37,12 @@ def call(){
                 }
             }
         }
+
+        if (specs.build.type == "java") {
+            ciFunc.java_jenkinsfile(specs, config)
+        } else {
+        logger.warn "unsupported technology, as of now we only supports Java."
+        }  
     }   
     catch(Exception e) {
       logger.error "Error in build stage : " + e.getMessage()
