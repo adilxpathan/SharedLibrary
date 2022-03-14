@@ -20,7 +20,11 @@ Logger logger
   def buildFunc(Map specs, Map config){
     if (specs.containsKey("build")) {
         if (specs.build.type == "java" && specs.build.tool == "maven") {
-          mainScript.sh config.java.build.maven.command 
+          if (specs.build.containsKey("command")){
+            mainScript.sh specs.build.build.command 
+          } else {
+            mainScript.sh config.java.build.maven.command 
+          }
         }
         else {
         logger.warn "unsupported tool. Please use Maven."
