@@ -42,8 +42,8 @@ def call(){
                 logger.error "Error in reading specs file : " + e.getMessage()
             throw e
                 }
+            }
         }
-     
     }   
     catch(Exception e) {
       logger.error "Error in build stage : " + e.getMessage()
