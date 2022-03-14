@@ -18,11 +18,14 @@ Logger logger
   this.logger = new Logger(mainScript,"Build")
   }
   def buildFunc(Map specs, Map config){
+    etBuildInd = getBuildInd()
     if (specs.containsKey("build")) {
         if (specs.build.type == "java" && specs.build.tool == "maven") {
           if (specs.build.containsKey("command")){
-            mainScript.sh specs.build.build.command 
+            logger.info "executing build command: " + specs.build.command 
+            mainScript.sh specs.build.command 
           } else {
+            logger.info "executing build command: " + config.java.build.maven.command 
             mainScript.sh config.java.build.maven.command 
           }
         }
@@ -35,4 +38,4 @@ Logger logger
     throw new Exception("stopping the pipeline since build is skipped.")
         }
       }
-    }
+  }

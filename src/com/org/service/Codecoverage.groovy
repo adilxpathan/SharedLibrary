@@ -20,7 +20,14 @@ Logger logger
   def codecoverageCheckFunc(Map specs, Map config){
     if (specs.codeCoverage.isCodecoverageRequired && specs.containsKey("codeCoverage")){  
       if (specs.codeCoverage.tool == "jacoco") {
-        mainScript.sh config.java.codecoverage.jacoco.command 
+        if (specs.codeCoverage.containsKey("command")){
+          logger.info "executing codeCoverage command: " + specs.codeCoverage.command 
+          mainScript.sh specs.codeCoverage.command 
+
+        } else {
+          logger.info "executing codeCoverage command: " + config.java.codecoverage.jacoco.command 
+          mainScript.sh config.java.codecoverage.jacoco.command 
+        } 
         mainScript.publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './target/site/jacoco/', reportFiles: 'index.html', reportName: 'Code Coverage Report', reportTitles: ''])
         logger.info "codeCoverage successfully completed."
       } else {

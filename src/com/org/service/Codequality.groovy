@@ -19,8 +19,12 @@ Logger logger
   }
   def codequalityFunc(Map specs, Map config){
     if (specs.codeQuality.isCodeQualityRequired && specs.containsKey("codeQuality")){  
-      if (specs.codeCoverage.tool == "sonarqube") {
-        mainScript.sh """ mvn sonar:sonar -Dsonar.projectKey=${specs.codeQuality.projectKey} -Dsonar.host.url=${config.java.codequality.sonarqube.url} -Dsonar.login=${config.java.codequality.sonarqube.login} -Dsonar.projectName=${specs.codeQuality.projectName} -Dsonar.organization=${config.java.codequality.sonarqube.organization} """  
+      if (specs.codeQuality.tool == "sonarqube") {
+        if (specs.codeQuality.containsKey("command")) {
+          mainScript.sh specs.codeQuality.command 
+        } else {
+          mainScript.sh """ mvn sonar:sonar -Dsonar.projectKey=${specs.codeQuality.projectKey} -Dsonar.host.url=${config.java.codequality.sonarqube.url} -Dsonar.login=${config.java.codequality.sonarqube.login} -Dsonar.projectName=${specs.codeQuality.projectName} -Dsonar.organization=${config.java.codequality.sonarqube.organization} """  
+        }
         logger.info "codeQuality successfully completed."
        } else {
           logger.warn "unsupported tool. Please use sonarqube."
