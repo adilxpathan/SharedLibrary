@@ -8,33 +8,6 @@ def call(){
     Logger logger = new Logger(this, "Java-Jenkinsfile", LogLevel.fromString(env.LOG_LEVEL))
     def specs = [:]
     try {
-    stage('Specs Checkout'){
-      cleanWs()
-      ciFunc.checkoutVarFunc([
-      repo: Repo,
-      branch: Branch
-      ])
-        stage('reading GlobalConfig & Specs'){ 
-            try {
-            logger.info "reading the specs from Specs repository"
-            def specsDir = "./$Version"
-            logger.debug "specs version" + specsDir
-                if(fileExists(specsDir + "/ci_template.yaml")){
-                ci_template = readYaml file : specsDir + "/ci_template.yaml"
-                specs = specs + ci_template
-                logger.debug "reading specs file" + specs
-                }
-            
-                logger.info "reading the global config from resources"
-                def request = libraryResource "com/org/service/globalConfig/globalConfig.yaml"
-                config = readYaml text: request
-                logger.debug "reading config file" + config
-                }
-            catch(Exception e) {
-                logger.error "Error in reading specs file : " + e.getMessage()
-            throw e
-                }
-        }
      
         stage('Code Checkout'){
             ciFunc.checkoutVarFunc([
@@ -42,22 +15,36 @@ def call(){
             branch: specs.scm.branch  
             ])
             }
-        }   
-        stage('Build'){
-        ciFunc.build(specs, config)
-        }
-        
+    stage('Build'){
+      ciFunc.build(specs, config)
+      }
+
+    if (specs.unitTest.isUnittestRequired && specs.containsKey("unitTest")){
         stage('UnitTest'){
             ciFunc.unittest(specs, config)
         }
+    }
+      else {
+      logger.warn "Skipping unit test stage because unit Test templates are missing or Unit Test stage is disabled."
+      }
 
-        stage('CodeCoverage'){
-        ciFunc.codecoverage(specs, config)
-        }
-
-        stage('CodeQuality'){
-        ciFunc.codequality(specs, config)
-        }
+    if (specs.codeCoverage.isCodecoverageRequired && specs.containsKey("codeCoverage")){  
+    stage('CodeCoverage'){
+      ciFunc.codecoverage(specs, config)
+      }
+    } 
+    else {
+    logger.warn "Skipping code coverage stage because code coverage templates are missing or code coverage stage is disabled." 
+      }
+      
+    if (specs.codeQuality.isCodeQualityRequired && specs.containsKey("codeQuality")){  
+    stage('CodeQuality'){
+      ciFunc.codequality(specs, config)
+      }
+    } 
+    else {
+    logger.warn "Skipping code quality stage because code quality templates are missing or code quality stage is disabled." 
+      }  
     }   
     catch(Exception e) {
       logger.error "Error in build stage : " + e.getMessage()
