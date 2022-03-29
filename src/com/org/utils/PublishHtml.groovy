@@ -28,7 +28,7 @@ Logger logger
   this.reportTitles = reportTitles
   this.logger = new Logger(mainScript,"publishHtml")
   }
-  void publishHtmlFunc(Script mainScript, Boolean allowMissing, Boolean alwaysLinkToLastBuild, Boolean keepAll, String reportDir, String reportFiles, String reportName, String reportTitles) {
+  void publishHtmlFunc(Boolean allowMissing, Boolean alwaysLinkToLastBuild, Boolean keepAll, String reportDir, String reportFiles, String reportName, String reportTitles) {
       mainScript.publishHTML([allowMissing: allowMissing, alwaysLinkToLastBuild: alwaysLinkToLastBuild, keepAll: keepAll, reportDir: reportDir, reportFiles: reportFiles, reportName: reportName, reportTitles: reportTitles]) 
   }
 }
