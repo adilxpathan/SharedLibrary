@@ -1,4 +1,4 @@
-package com.org.service
+package com.org.utils
 
 //import groovy.transform.Field
 //import com.org.exception.*
