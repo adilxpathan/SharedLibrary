@@ -19,7 +19,7 @@ PublishHtml publishHtml
   this.specs = specs
   this.config = config
   this.logger = new Logger(mainScript,"Unittesting")
-  this.publishHtml = new com.org.utils.PublishHtml(this, GlobalVars.publishHtml_allowMissing, GlobalVars.publishHtml_alwaysLinkToLastBuild, GlobalVars.publishHtml_keepAll, GlobalVars.publishHtml_unitTest_reportDir, GlobalVars.publishHtml_unitTest_reportFiles, GlobalVars.publishHtml_unitTest_reportName, GlobalVars.publishHtml_reportTitles)
+  this.publishHtml = new PublishHtml(mainScript, GlobalVars.publishHtml_allowMissing, GlobalVars.publishHtml_alwaysLinkToLastBuild, GlobalVars.publishHtml_keepAll, GlobalVars.publishHtml_unitTest_reportDir, GlobalVars.publishHtml_unitTest_reportFiles, GlobalVars.publishHtml_unitTest_reportName, GlobalVars.publishHtml_reportTitles)
   }
   void unitTestFunc(Map specs, Map config) {
     if (specs.unitTest.isUnittestRequired && specs.containsKey("unitTest")){
