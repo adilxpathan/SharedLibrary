@@ -19,13 +19,13 @@ PublishHtml publishHtml
   this.specs = specs
   this.config = config
   this.logger = new Logger(mainScript,"Unittesting")
-  this.publishHtml = new PublishHtml(GlobalVars.publishHtml_allowMissing, GlobalVars.publishHtml_alwaysLinkToLastBuild, GlobalVars.publishHtml_keepAll, GlobalVars.publishHtml_unitTest_reportDir, GlobalVars.publishHtml_unitTest_reportFiles, GlobalVars.publishHtml_unitTest_reportName, GlobalVars.publishHtml_reportTitles)
+  this.publishHtml = new com.org.utils.PublishHtml(this, GlobalVars.publishHtml_allowMissing, GlobalVars.publishHtml_alwaysLinkToLastBuild, GlobalVars.publishHtml_keepAll, GlobalVars.publishHtml_unitTest_reportDir, GlobalVars.publishHtml_unitTest_reportFiles, GlobalVars.publishHtml_unitTest_reportName, GlobalVars.publishHtml_reportTitles)
   }
   void unitTestFunc(Map specs, Map config) {
     if (specs.unitTest.isUnittestRequired && specs.containsKey("unitTest")){
         if (specs.unitTest.tool == 'junit') {
             mainScript.sh config.java.unittest.junit.command 
-            mainScript.sh config.java.unittest.junit.surefire
+            //mainScript.sh config.java.unittest.junit.surefire
             publishHtml.publishHtmlFunc(GlobalVars.publishHtml_allowMissing, GlobalVars.publishHtml_alwaysLinkToLastBuild, GlobalVars.publishHtml_keepAll, GlobalVars.publishHtml_unitTest_reportDir, GlobalVars.publishHtml_unitTest_reportFiles, GlobalVars.publishHtml_unitTest_reportName, GlobalVars.publishHtml_reportTitles)
             //mainScript.publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './target/site/', reportFiles: 'surefire-report.html', reportName: 'UnitTest Report', reportTitles: '']) 
           } else {

@@ -19,7 +19,7 @@ PublishHtml publishHtml
   this.specs = specs
   this.config = config
   this.logger = new Logger(mainScript,"Codecoverage")
-  this.publishHtml = new PublishHtml(GlobalVars.publishHtml_allowMissing, GlobalVars.publishHtml_alwaysLinkToLastBuild, GlobalVars.publishHtml_keepAll, GlobalVars.publishHtml_codeCoverage_reportDir, GlobalVars.publishHtml_codeCoverage_reportFiles, GlobalVars.publishHtml_codeCoverage_reportName, GlobalVars.publishHtml_reportTitles)
+  this.publishHtml = new com.org.utils.PublishHtml(this, GlobalVars.publishHtml_allowMissing, GlobalVars.publishHtml_alwaysLinkToLastBuild, GlobalVars.publishHtml_keepAll, GlobalVars.publishHtml_codeCoverage_reportDir, GlobalVars.publishHtml_codeCoverage_reportFiles, GlobalVars.publishHtml_codeCoverage_reportName, GlobalVars.publishHtml_reportTitles)
   }
   void codecoverageCheckFunc(Map specs, Map config){
     if (specs.codeCoverage.isCodecoverageRequired && specs.containsKey("codeCoverage")){  
