@@ -7,9 +7,10 @@ java:
   unittest:
     junit:
       command: "mvn test"
+      surefire: "mvn surefire-report:report-only"
   codecoverage:
     jacoco:
-      command: "mvn surefire-report:report-only"
+      command: "mvn --version"
   codequality:
     sonarqube:
       url: "https://sonarcloud.io"
