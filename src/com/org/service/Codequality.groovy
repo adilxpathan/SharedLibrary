@@ -17,7 +17,7 @@ Logger logger
   this.config = config
   this.logger = new Logger(mainScript,"Codequality")
   }
-  def codequalityFunc(Map specs, Map config){
+  void codequalityFunc(Map specs, Map config){
     if (specs.codeQuality.isCodeQualityRequired && specs.containsKey("codeQuality")){  
       if (specs.codeQuality.tool == "sonarqube") {
         if (specs.codeQuality.containsKey("command")) {

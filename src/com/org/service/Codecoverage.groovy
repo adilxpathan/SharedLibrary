@@ -17,7 +17,7 @@ Logger logger
   this.config = config
   this.logger = new Logger(mainScript,"Codecoverage")
   }
-  def codecoverageCheckFunc(Map specs, Map config){
+  void codecoverageCheckFunc(Map specs, Map config){
     if (specs.codeCoverage.isCodecoverageRequired && specs.containsKey("codeCoverage")){  
       if (specs.codeCoverage.tool == "jacoco") {
         if (specs.codeCoverage.containsKey("command")){

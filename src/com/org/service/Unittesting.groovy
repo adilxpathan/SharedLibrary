@@ -17,7 +17,7 @@ Logger logger
   this.config = config
   this.logger = new Logger(mainScript,"Unittesting")
   }
-  def unitTestFunc(Map specs, Map config) {
+  void unitTestFunc(Map specs, Map config) {
     if (specs.unitTest.isUnittestRequired && specs.containsKey("unitTest")){
         if (specs.unitTest.tool == 'junit') {
             mainScript.sh config.java.unittest.junit.command 

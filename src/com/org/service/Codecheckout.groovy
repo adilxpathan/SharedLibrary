@@ -16,7 +16,7 @@ Logger logger
   this.specs = specs
   this.logger = new Logger(mainScript,"Codecheckout")
   }
-  def checkOutFunc(Map specs){
+  void checkOutFunc(Map specs){
     try {
       mainScript.checkout([$class: 'GitSCM',
       branches: [[name: specs.branch]],

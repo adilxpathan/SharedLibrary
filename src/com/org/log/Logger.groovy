@@ -70,7 +70,7 @@ class Logger implements Serializable {
 
     private void printing(String message, LogLevel thatLogLevel = LogLevel.SYSTEM){
         if(!(thatLogLevel.getLevel() == LogLevel.SYSTEM.getLevel() && logLevel.getLevel() < LogLevel.DEBUG.getLevel())){
-            //[AFA-6073] Arindam : replaced printf with println
+           
             script.println(getCurrentTime() + wrapColor(thatLogLevel) + "[${component}] ${message}")
         }
     }
