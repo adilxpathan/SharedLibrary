@@ -23,7 +23,7 @@ Logger logger
         if (specs.codeQuality.containsKey("command")) {
           mainScript.sh specs.codeQuality.command 
         } else {
-          mainScript.sh """ mvn sonar:sonar -Dsonar.projectKey=${specs.codeQuality.projectKey} -Dsonar.host.url=${config.java.codequality.sonarqube.url} -Dsonar.login=${config.java.codequality.sonarqube.login} -Dsonar.projectName=${specs.codeQuality.projectName} -Dsonar.organization=${config.java.codequality.sonarqube.organization} """  
+          mainScript.sh """ mvn sonar:sonar -Dsonar.projectKey=${specs.codeQuality.projectKey} -Dsonar.host.url=${specs.codeQuality.url} -Dsonar.login=${specs.codeQuality.login} -Dsonar.projectName=${specs.codeQuality.projectName} -Dsonar.organization=${specs.codeQuality.organization} """  
         }
         logger.info "codeQuality successfully completed."
        } else {
