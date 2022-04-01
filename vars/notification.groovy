@@ -22,11 +22,11 @@ def emailPipelineStatus(){
         //html_body = sh(script: "cat ${config.props.mailbodyhtml}", returnStdout: true).trim()
         //html_subject = sh(script: "cat ${config.props.emailsubhtml}", returnStdout: true).trim()
         
-        sh "ls -ltr"
+        def html_body = libraryResource "com/org/service/email/index.html"
         
         emailext attachmentsPattern: 'letsSolve*.png',
         mimeType: 'text/html',
-        body: '${FILE, path="/resources/com/org/service/email/index.html"}',
+        body: html_body,
         from: "ltipoctest@gmail.com",
         subject: '$EmailSubject',
         to: "ltipoctest@gmail.com"
