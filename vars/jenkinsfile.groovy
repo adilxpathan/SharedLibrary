@@ -48,5 +48,9 @@ def call(){
       logger.error "Error in build stage : " + e.getMessage()
     throw e
       }
+
+      finally {
+        notification()
+      }
     }
   }
