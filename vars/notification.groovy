@@ -10,7 +10,6 @@ def emailPipelineStatus(){
         def templatename = null
 
         logger.info ('Preparing subject line')
-        def String EmailSubject = "Build " + env.BUILD_NUMBER + "-" + currentBuild.currentResult + "(" + (currentBuild.fullDisplayName) + ")"
         //sh "echo '${EmailSubject}' > ${config.props.emailsubhtml}" 
         //templatename = config.props.iOSTemplateName
         //logger.info ('Preparing email body ')
@@ -21,14 +20,17 @@ def emailPipelineStatus(){
         
         //html_body = sh(script: "cat ${config.props.mailbodyhtml}", returnStdout: true).trim()
         //html_subject = sh(script: "cat ${config.props.emailsubhtml}", returnStdout: true).trim()
-        
-        def html_body = libraryResource "com/org/service/email/index.html"
+        def String EmailSubject = "Build " + env.BUILD_NUMBER + "-" + currentBuild.currentResult + "(" + (currentBuild.fullDisplayName) + ")"
+        sh "echo '${EmailSubject}' > emailsub.html" 
+
+        def html_body = sh(script: "cat index.html", returnStdout: true).trim()
+        html_subject = sh(script: "cat emailsub.html", returnStdout: true).trim()
         
         emailext attachmentsPattern: 'letsSolve*.png',
         mimeType: 'text/html',
         body: html_body,
         from: "ltipoctest@gmail.com",
-        subject: '$EmailSubject',
+        subject: emailsub.html,
         to: "ltipoctest@gmail.com"
 
 
