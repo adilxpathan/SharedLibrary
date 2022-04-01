@@ -31,6 +31,7 @@ def emailPipelineStatus(){
         //to: "ltipoctest@gmail.com"
 
         emailext 
+        mimeType: 'text/html',
         body: '''Hello''',
         from: "ltipoctest@gmail.com",
         subject: 'TEST',
