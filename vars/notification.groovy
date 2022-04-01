@@ -22,6 +22,7 @@ def emailPipelineStatus(){
         //html_body = sh(script: "cat ${config.props.mailbodyhtml}", returnStdout: true).trim()
         //html_subject = sh(script: "cat ${config.props.emailsubhtml}", returnStdout: true).trim()
         
+        sh "cat /resources/com/org/service/email/index.html"
         
         emailext attachmentsPattern: 'letsSolve*.png',
         mimeType: 'text/html',
