@@ -36,9 +36,7 @@ def emailPipelineStatus(){
         emailext body: '''Hello''',
             mimeTye: 'text/html',
             subject: "[Jenkins] Started ${jobName}",
-            to: "${mailRecipients}",
-            replyTo: "${mailRecipients}",
-            recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+            to: "${mailRecipients}"
 
     }catch(emailEx){
         logger.exception(emailEx, "failed to send email")
