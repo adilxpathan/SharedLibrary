@@ -23,20 +23,13 @@ def emailPipelineStatus(){
         //html_subject = sh(script: "cat ${config.props.emailsubhtml}", returnStdout: true).trim()
         
         
-        //emailext attachmentsPattern: 'letsSolve*.png',
-        //mimeType: 'text/html',
-        //body: '${FILE, path="/resources/com/org/service/email/index.html"}',
-        //from: "ltipoctest@gmail.com",
-        //subject: 'TEST',
-        //to: "ltipoctest@gmail.com"
+        emailext attachmentsPattern: 'letsSolve*.png',
+        mimeType: 'text/html',
+        body: '${FILE, path="/resources/com/org/service/email/index.html"}',
+        from: "ltipoctest@gmail.com",
+        subject: '$EmailSubject',
+        to: "ltipoctest@gmail.com"
 
-        def mailRecipients = 'ltipoctest@gmail.com'
-        def jobName = currentBuild.fullDisplayName
-                   //emailext body: '''${SCRIPT, template="groovy-html.template"}''',
-        emailext body: '''Hello''',
-            mimeTye: 'text/html',
-            subject: "[Jenkins] Started ${jobName}",
-            to: "${mailRecipients}"
 
     }catch(emailEx){
         logger.exception(emailEx, "failed to send email")
