@@ -25,12 +25,12 @@ def emailPipelineStatus(){
 
         def html_body = sh(script: "cat index.html", returnStdout: true).trim()
         html_subject = sh(script: "cat emailsub.html", returnStdout: true).trim()
-        
+
         emailext attachmentsPattern: 'letsSolve*.png',
         mimeType: 'text/html',
         body: html_body,
         from: "ltipoctest@gmail.com",
-        subject: emailsub.html,
+        subject: html_subject,
         to: "ltipoctest@gmail.com"
 
 
