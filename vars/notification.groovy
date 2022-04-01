@@ -21,7 +21,7 @@ def emailPipelineStatus(){
         
         //html_body = sh(script: "cat ${config.props.mailbodyhtml}", returnStdout: true).trim()
         //html_subject = sh(script: "cat ${config.props.emailsubhtml}", returnStdout: true).trim()
-        emailext attachmentsPattern: 'TFS_Digital*.jpg',
+        emailext attachmentsPattern: 'letsSolve*.png',
         mimeType: 'text/html',
         body: '${FILE, path="resources/com/org/service/email/index.html"}',
         from: 'ltipoctest@gmail.com',
