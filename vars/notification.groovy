@@ -30,13 +30,15 @@ def emailPipelineStatus(){
         //subject: 'TEST',
         //to: "ltipoctest@gmail.com"
 
-        emailext 
-        mimeType: 'text/html',
-        body: '''Hello''',
-        from: "ltipoctest@gmail.com",
-        subject: 'TEST',
-        to: "ltipoctest@gmail.com"
-
+        def mailRecipients = 'ltipoctest@gmail.com'
+        def jobName = currentBuild.fullDisplayName
+                   //emailext body: '''${SCRIPT, template="groovy-html.template"}''',
+        emailext body: '''Hello''',
+            mimeTye: 'text/html',
+            subject: "[Jenkins] Started ${jobName}",
+            to: "${mailRecipients}",
+            replyTo: "${mailRecipients}",
+            recipientProviders: [[$class: 'CulpritsRecipientProvider']]
 
     }catch(emailEx){
         logger.exception(emailEx, "failed to send email")
