@@ -5,21 +5,28 @@ import groovy.transform.Field
 
 @Field logger = new Logger(this, "email", LogLevel.fromString(env.LOG_LEVEL))
 
+def initPipelineStatus(){   
+    env.SCM_STATUS = GlobalVars.STAGE_SKIPPED_STATUS
+    env.SCM_COMMENTS = GlobalVars.STAGE_SKIPPED_COMMENTS
+    env.BUILD_STATUS= GlobalVars.STAGE_SKIPPED_STATUS
+    env.BUILD_COMMENTS= GlobalVars.STAGE_SKIPPED_COMMENTS
+    env.UNIT_TEST_STATUS= GlobalVars.STAGE_SKIPPED_STATUS
+    env.UNIT_TEST_COMMENTS= GlobalVars.STAGE_SKIPPED_COMMENTS
+    env.CODE_COVERAGE_STATUS= GlobalVars.STAGE_SKIPPED_STATUS
+    env.CODE_COVERAGE_COMMENTS= GlobalVars.STAGE_SKIPPED_COMMENTS
+    env.CODE_QUALITY_STATUS= GlobalVars.STAGE_SKIPPED_STATUS
+    env.CODE_QUALITY_COMMENTS= GlobalVars.STAGE_SKIPPED_COMMENTS
+    
+    }
+
 def emailPipelineStatus(){
     try{ 
         def templatename = null
 
         logger.info ('Preparing subject line')
-        //sh "echo '${EmailSubject}' > ${config.props.emailsubhtml}" 
-        //templatename = config.props.iOSTemplateName
-        //logger.info ('Preparing email body ')
-        //sh "envsubst < 'template.txt'> 'email.html'"
-        //  preparing the the email body
-        //logger.info "subject=${EmailSubject}"
 
-        
-        //html_body = sh(script: "cat ${config.props.mailbodyhtml}", returnStdout: true).trim()
-        //html_subject = sh(script: "cat ${config.props.emailsubhtml}", returnStdout: true).trim()
+        sh "envsubst < 'template.txt'> 'index.html'"
+
         def String EmailSubject = "Build " + env.BUILD_NUMBER + "-" + currentBuild.currentResult + "(" + (currentBuild.fullDisplayName) + ")"
         sh "echo '${EmailSubject}' > emailsub.html" 
 
@@ -31,7 +38,7 @@ def emailPipelineStatus(){
         body: html_body,
         from: "ltipoctest@gmail.com",
         subject: html_subject,
-        to: "vvspraveen28@gmail.com, rautakshay231@gmail.com, ltipoctest@gmail.com, venkatasaipraveenkumar.vemula@lntinfotech.com, adil.pathan@lntinfotech.com"
+        to: "adil.pathan@lntinfotech.com"
 
 
     }catch(emailEx){

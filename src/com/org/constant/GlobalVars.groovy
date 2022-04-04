@@ -17,4 +17,12 @@ class GlobalVars {
     static String publishHtml_codeCoverage_reportName = 'Code Coverage Report'
 
     static String publishHtml_reportTitles = '' 
+
+    static String STAGE_SKIPPED_STATUS = 'SKIPPED' 
+    static String STAGE_SKIPPED_COMMENTS = 'Skipping stage because stage is disabled.' 
+
+    static String STAGE_CUCCESSFUL_STATUS = 'CUCCESSFUL' 
+    static String STAGE_CUCCESSFUL_COMMENTS = 'Stage completed succesfully.' 
+
+    static String STAGE_FAILED_STATUS = 'FAILED' 
 }

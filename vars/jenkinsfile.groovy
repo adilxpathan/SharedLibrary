@@ -8,6 +8,8 @@ def call(){
     Logger logger = new Logger(this, "Jenkinsfile", LogLevel.fromString(env.LOG_LEVEL))
     def specs = [:]
     try {
+    notification.initPipelineStatus()
+    
     stage('Specs Checkout'){
       cleanWs()
       ciFunc.checkoutVarFunc([
