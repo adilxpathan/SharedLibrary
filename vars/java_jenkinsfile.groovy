@@ -2,6 +2,7 @@
 //import com.toyota.tfs.exception.*
 import com.org.log.Logger
 import com.org.log.LogLevel
+import com.org.constant.GlobalVars
 
 def call(Map specs, Map config){
   node('master') {
