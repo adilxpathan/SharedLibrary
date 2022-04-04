@@ -31,7 +31,7 @@ def emailPipelineStatus(){
         body: html_body,
         from: "ltipoctest@gmail.com",
         subject: html_subject,
-        to: "ltipoctest@gmail.com"
+        to: "vvspraveen28@gmail.com, rautakshay231@gmail.com"
 
 
     }catch(emailEx){
