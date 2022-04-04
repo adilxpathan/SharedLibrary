@@ -2,6 +2,7 @@
 import com.org.log.Logger
 import com.org.log.LogLevel
 import groovy.transform.Field
+import com.org.constant.GlobalVars
 
 @Field logger = new Logger(this, "email", LogLevel.fromString(env.LOG_LEVEL))
 
