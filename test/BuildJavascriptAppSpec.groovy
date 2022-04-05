@@ -8,7 +8,7 @@ class BuildJavascriptAppSpec extends JenkinsPipelineSpecification {
     def Map config = [:]
     def setup() {
 
-        BuildJavascriptAppSpec build = new new com.org.service.Build(this, specs, config)
+        BuildJavascriptAppSpec build = new com.org.service.Build(this, specs, config)
         //buildJavascriptApp = loadPipelineScriptForTest("vars/jenkinsfile.groovy")
     }
 
