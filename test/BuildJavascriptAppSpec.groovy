@@ -4,8 +4,8 @@ import com.org.service.Build
 
 class BuildJavascriptAppSpec extends JenkinsPipelineSpecification {
     def buildJavascriptApp = null
-    def specs = [build.type: "java", build.tool: "maven", build.command: "mvn -version"]
-    def config = [:]
+    def Map specs = [build.type: "java", build.tool: "maven", build.command: "mvn -version"]
+    def Map config = [:]
     def setup() {
 
         BuildJavascriptAppSpec build = new new com.org.service.Build(this, specs, config)
