@@ -7,11 +7,11 @@ class BuildJavascriptAppSpec extends JenkinsPipelineSpecification {
         buildJavascriptApp = loadPipelineScriptForTest("vars/jenkinsfile.groovy")
     }
 
-    def "[buildJavascriptApp] will run unit test if unitTest.isUnittestRequired is true"() {
+    def "[buildJavascriptApp] will run unit test if build.type is java"() {
         when:
-            buildJavascriptApp build.type: "java"
+            buildJavascriptApp build.type = 'java'
         then:
-            1 * getPipelineMock("ciFunc.java_jenkinsfile(specs, config)")
+            1 * getPipelineMock('ciFunc.java_jenkinsfile(specs, config)')
     }
 
 }
