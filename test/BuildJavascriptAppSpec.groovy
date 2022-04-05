@@ -18,7 +18,6 @@ class BuildJavascriptAppSpec extends JenkinsPipelineSpecification {
             buildJavascriptApp specs.build.type = "java"
         then:
             1 * getPipelineMock ("buildFunc(specs, config)") 
+   }
 }
-    }
 
-}
