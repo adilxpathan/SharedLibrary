@@ -8,15 +8,17 @@ class BuildJavascriptAppSpec extends JenkinsPipelineSpecification {
     def Map config = [:]
     def setup() {
 
-        BuildJavascriptAppSpec build = new com.org.service.Build(this, specs, config)
+        //BuildJavascriptAppSpec build = new com.org.service.Build(this, specs, config)
         //buildJavascriptApp = loadPipelineScriptForTest("vars/jenkinsfile.groovy")
+        def BuildTest = loadPipelineScriptForTest("com/org/service/Build.groovy")
     }
 
-    def "[build] will run unit test if build.type is java"() {
+    def "[BuildTest] will run unit test if build.type is java"() {
+
         when:
-            build build.type = 'java'
+            BuildTest build.type = 'java'
         then:
-            1 * getPipelineMock("build.buildFunc.call")(specs, config)
+            1 * getPipelineMock("buildFunc.call")(specs, config)
     }
 
 }
