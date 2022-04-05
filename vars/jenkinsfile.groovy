@@ -53,7 +53,8 @@ def call(){
       }
 
       finally {
-        notification.emailPipelineStatus()
+        logger.info "test"
+        //notification.emailPipelineStatus()
       }
     }
   }
