@@ -1,4 +1,4 @@
-/*import com.homeaway.devtools.jenkins.testing.JenkinsPipelineSpecification
+import com.homeaway.devtools.jenkins.testing.JenkinsPipelineSpecification
 import com.org.service.Build
 
 
@@ -15,10 +15,9 @@ class BuildJavascriptAppSpec extends JenkinsPipelineSpecification {
     def "[buildJavascriptApp] will run unit test if build.type is java"() {
 
         when:
-            buildJavascriptApp.buildFunc("...")
+            buildJavascriptApp specs.build.type = "java"
         then:
-            1 * getPipelineMock ("mainScript.sh") ("specs.build.command") 
+            1 * getPipelineMock ("buildJavascriptApp.buildFunc.call") ("specs.build.command") 
     }
 
 }
-*/
