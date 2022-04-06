@@ -31,7 +31,7 @@
         <groovy.gmaven.pluginVersion>1.6.1</groovy.gmaven.pluginVersion>
         <google.guava.version>20.0</google.guava.version>
 
-        <jenkins-spock.version>2.0.1</jenkins-spock.version>
+        <jenkins-spock.version>2.1.5</jenkins-spock.version>
         <jenkins.version>2.338</jenkins.version>
         <jenkins.servlet.version>3.1.0</jenkins.servlet.version>
         <jenkins.workflow.cps.version>2.36</jenkins.workflow.cps.version>
@@ -48,6 +48,7 @@
         <log.slf4j.version>1.7.25</log.slf4j.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <groovy.spock.version>1.1-groovy-2.4</groovy.spock.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -66,6 +67,12 @@
             <version>${jenkins-spock.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+			<groupId>org.spockframework</groupId>
+			<artifactId>spock-core</artifactId>
+			<version>${groovy.spock.version}</version>
+			<scope>test</scope>
+		</dependency>
         <dependency>
             <groupId>com.cloudbees</groupId>
             <artifactId>groovy-cps</artifactId>
