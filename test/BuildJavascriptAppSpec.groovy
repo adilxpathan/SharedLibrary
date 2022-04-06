@@ -9,13 +9,15 @@ class BuildJavascriptAppSpec extends JenkinsPipelineSpecification {
     def setup() {
 
         buildJavascriptApp = loadPipelineScriptForTest("vars/jenkinsfile")
-        buildJavascriptApp.getBinding().setVariable( "build.type", "java" )
+        def specs = [build : [type: "java", tool: "maven", command: "mvn -version"]]
+        def config = [:]
+        buildJavascriptApp.getBinding().setVariable( specs, specs )
     }
 
     def "[buildJavascriptApp] will run unit test if build.type is java"() {
 
         when:
-            buildJavascriptApp ()
+            buildJavascriptApp()
         then:
             1 * getPipelineMock ("buildFunc.call") (_ as Map)
     }
