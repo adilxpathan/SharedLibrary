@@ -1,4 +1,4 @@
-import com.homeaway.devtools.jenkins.testing.JenkinsPipelineSpecification
+/*import com.homeaway.devtools.jenkins.testing.JenkinsPipelineSpecification
 import com.org.service.Build
 
 
@@ -21,3 +21,4 @@ class BuildJavascriptAppSpec extends JenkinsPipelineSpecification {
     }
 
 }
+*/
