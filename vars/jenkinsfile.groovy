@@ -41,7 +41,7 @@ def call(){
         }
 
         if (specs.build.type == "java") {
-            logger.info "buid type is: " + specs.build.type
+            logger.info "Calling java_jenkinsfile" 
             ciFunc.java_jenkinsfile(specs, config)
         } else {
         logger.warn "unsupported technology, as of now we only supports Java."

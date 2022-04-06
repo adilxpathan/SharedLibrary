@@ -4,11 +4,11 @@ import com.org.service.Build
 
 class BuildJavascriptAppSpec extends JenkinsPipelineSpecification {
     def buildJavascriptApp  = null
-    def Map specs = [build : [type: "java", tool: "maven", command: "mvn -version"]]
+    def Map specs = [build : [type: "java"]]
     def Map config = [:]
     def setup() {
 
-        buildJavascriptApp  = new com.org.service.Build(specs, config)
+        buildJavascriptApp = loadPipelineScriptForTest("vars/jenkinsfile.groovy")
           
     }
 
@@ -17,7 +17,7 @@ class BuildJavascriptAppSpec extends JenkinsPipelineSpecification {
         when:
             buildJavascriptApp specs.build.type = "java"
         then:
-            1 * getPipelineMock ("buildJavascriptApp.buildFunc.call") ("specs.build.command") 
+            1 * getPipelineMock ("logger.info") ("Calling java_jenkinsfile")
     }
 
 }
